@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Gesture Translation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider round"></div>
+        </label>
+    </div>
+
+    <div class="main-container">
+        <div class="prediction-card" id="prediction-container">
+            <img src="{{ url_for('static', filename='images/waiting.png') }}" alt="Gesture" id="gesture-image">
+            <div id="gesture-text">
+                <span id="gesture-word">Waiting...</span>
+                <button id="speak-button" title="Speak Prediction"><img src="{{ url_for('static', filename='images/speaker.png') }}" alt="Speak"></button>
+            </div>
+            <div id="confidence-container">
+                <div class="confidence-bar-bg">
+                    <div class="confidence-bar-fg" id="confidence-bar"></div>
+                </div>
+                <div id="confidence-text">Confidence: 0%</div>
+            </div>
+
+            <div class="status-indicator" id="status-indicator">Idle</div>
+
+            <div class="sentence-container">
+                <div id="sentence-display"></div>
+                <button id="clear-sentence-btn">Clear</button>
+            </div>
+
+            <div class="translation-controls">
+                <select id="language-select">
+                    <option value="ar">Arabic</option>
+                    <option value="fr">French</option>
+                    <option value="es">Spanish</option>
+                    <option value="de">German</option>
+                </select>
+                </div>
+            <div class="translation-result" id="translation-output"></div>
+        </div>
+
+        <div class="history-card">
+            <h2>History</h2>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
